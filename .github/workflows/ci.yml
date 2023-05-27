@@ -15,17 +15,14 @@ jobs:
     steps:
       - uses: actions/checkout@v2
 
-      - name: Setup pnpm
-        uses: pnpm/action-setup@v2
-
       - name: Setup Node.js
         uses: actions/setup-node@v2
         with:
           node-version: '16'
-          cache: 'pnpm'
+          cache: 'npm'
 
       - name: Install dependencies
-        run: pnpm ci
+        run: npm ci
 
       - name: Setup Aftman
         uses: ok-nick/setup-aftman@v0.3.0
@@ -35,10 +32,10 @@ jobs:
           aftman -V
           aftman list
           node -v
-          pnpm -v
+          npm -v
 
       - name: Create React manifest
-        run: pnpm wally --type "react"
+        run: npm wally -- -- --type "react"
 
       - name: Install Packages
         run: wally install

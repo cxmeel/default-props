@@ -16,17 +16,14 @@ jobs:
         with:
           ref: ${{ github.event.release.tag_name }}
 
-      - name: Setup pnpm
-        uses: pnpm/action-setup@v2
-
       - name: Setup Node.js
         uses: actions/setup-node@v2
         with:
           node-version: '16'
-          cache: 'pnpm'
+          cache: 'npm'
 
       - name: Install dependencies
-        run: pnpm ci
+        run: npm ci
 
       - name: Setup Aftman
         uses: ok-nick/setup-aftman@v0.3.0
@@ -36,7 +33,7 @@ jobs:
           aftman -V
           aftman list
           node -v
-          pnpm -v
+          npm -v
 
       - name: Remove tests
         run: find /src -name '*.spec.lua' -delete
@@ -50,10 +47,10 @@ jobs:
 
       - name: Create React release
         run: |
-          pnpm wally --type "react"
+          npm wally -- -- --type "react"
           wally publish
 
       - name: Create Roact release
         run: |
-          pnpm wally --type "roact"
+          npm wally -- -- --type "roact"
           wally publish
