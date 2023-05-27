@@ -3,6 +3,8 @@ name = "csqrl/default-props"
 version = "0.1.0"
 registry = "https://github.com/UpliftGames/wally-index"
 realm = "shared"
+exclude = ["**"]
+include = ["src", "src/**", "wally.toml", "wally.lock", "default.project.json"]
 
 [dependencies]
 Sift = "csqrl/sift@0.0.6"
