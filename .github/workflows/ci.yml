@@ -35,7 +35,7 @@ jobs:
           npm -v
 
       - name: Create React manifest
-        run: npm wally -- -- --type "react"
+        run: npm run wally -- -- --type "react"
 
       - name: Install Packages
         run: wally install
