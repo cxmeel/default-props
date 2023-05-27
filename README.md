@@ -73,7 +73,7 @@ local Button = require(path.to.Button)
 local PrimaryButton = default(Button) {
   BackgroundColor3 = Color3.fromHex("#00a2ff"),
   TextColor3 = Color3.fromHex("#fafafa"),
-})
+}
 
 return PrimaryButton
 ```
