@@ -1,0 +1,8 @@
+[package]
+name = "csqrl/default-props"
+version = "0.1.0"
+registry = "https://github.com/UpliftGames/wally-index"
+realm = "shared"
+
+[dependencies]
+Sift = "csqrl/sift@0.0.6"

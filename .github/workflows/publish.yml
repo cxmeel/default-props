@@ -1,0 +1,55 @@
+name: Publish
+
+on:
+  workflow_dispatch:
+  release:
+    types: [published]
+
+jobs:
+  publish:
+    name: Publish to Wally
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+        with:
+          ref: ${{ github.event.release.tag_name }}
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v2
+        with:
+          node-version: '16'
+          cache: 'pnpm'
+
+      - name: Install dependencies
+        run: pnpm ci
+
+      - name: Setup Aftman
+        uses: ok-nick/setup-aftman@v0.3.0
+
+      - name: Report tool versions
+        run: |
+          aftman -V
+          aftman list
+          node -v
+          pnpm -v
+
+      - name: Remove tests
+        run: find /src -name '*.spec.lua' -delete
+
+      - name: Set Wally token
+        run: |
+          mkdir -p ~/.wally
+          printf "[tokens]\n\"https://api.wally.run/\" = \"%s\"" "$WALLY_TOKEN" >> ~/.wally/auth.toml
+
+      - name: Create React release
+        run: |
+          pnpm wally --type "react"
+          wally publish
+
+      - name: Create Roact release
+        run: |
+          pnpm wally --type "roact"
+          wally publish

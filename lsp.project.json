@@ -1,0 +1,9 @@
+{
+  "name": "lsp",
+  "tree": {
+    "$path": "Packages",
+    "DefaultProps": {
+      "$path": "default.project.json"
+    }
+  }
+}

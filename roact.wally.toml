@@ -1,0 +1,5 @@
+[package]
+name = "csqrl/default-props-roact"
+
+[dependencies]
+React = "roblox/roact@1.4.4"
