@@ -47,10 +47,10 @@ jobs:
 
       - name: Create React release
         run: |
-          npm run wally -- -- --type "react"
+          npm run wally -- --type "react"
           wally publish
 
       - name: Create Roact release
         run: |
-          npm run wally -- -- --type "roact"
+          npm run wally -- --type "roact"
           wally publish
