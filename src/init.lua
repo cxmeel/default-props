@@ -15,7 +15,7 @@ local FFLAGS = {
 	COLLATE_BINDINGS = true,
 }
 
-type DefaultProps = { [any]: any } | (props: { [any]: any }, ...any) -> { [any]: any }
+export type DefaultProps = { [any]: any } | (props: { [any]: any }, ...any) -> { [any]: any }
 
 local function withDefaultProps(component, defaultProps: DefaultProps)
 	local isDefaultPropsFunctional = typeof(defaultProps) == "function"

@@ -1,5 +1,7 @@
 local InstancePropertyRegistry = {}
 
+local UNASSIGNABLE_ERROR_PATTERN = "^unable to assign"
+
 local function instanceHasProperties(className: string, propertyList: { string })
 	local propertyRegistry = InstancePropertyRegistry[className]
 
@@ -11,11 +13,12 @@ local function instanceHasProperties(className: string, propertyList: { string }
 	local testInstance = Instance.new(className)
 
 	for propertyName in propertyList do
-		local success = pcall(function()
-			return testInstance[propertyName]
+		local ok, message = pcall(function()
+			testInstance[propertyName] = true
 		end)
 
-		propertyRegistry[propertyName] = success
+		propertyRegistry[propertyName] = ok
+			or typeof(message) == "string" and message:lower():find(UNASSIGNABLE_ERROR_PATTERN)
 	end
 
 	testInstance:Destroy()

@@ -10,12 +10,12 @@ Add DefaultProps to your `wally.toml` file:
 # wally.toml
 
 [dependencies]
-DefaultProps = "csqrl/default-props-react@0.1.0"
-DefaultProps = "csqrl/default-props-roact@0.1.0" # if using Roact
+DefaultProps = "csqrl/default-props-react@x.x.x"
+DefaultProps = "csqrl/default-props-roact@x.x.x" # if using Roact
 ```
 
 ```bash
-$ wally install
+wally install
 ```
 
 ## Usage
